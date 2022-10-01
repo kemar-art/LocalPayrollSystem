@@ -10,7 +10,7 @@ namespace PayrollSystem.Services.Contracts
         Task UpdateAsync(Employee employee);
         Task UpdateAsync(int id);
         Task DeleteAsync(int employeeId);
-        decimal Loan(int id, decimal totalAmount);
+        decimal LoanPayment(int id, decimal totalAmount);
         IEnumerable<Employee> GetAll();
     }
 }

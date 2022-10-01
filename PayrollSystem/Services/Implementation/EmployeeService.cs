@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PayrollSystem.Data;
+using PayrollSystem.Data.Enums;
 using PayrollSystem.Services.Contracts;
 
 namespace PayrollSystem.Services.Implementation
@@ -7,10 +8,12 @@ namespace PayrollSystem.Services.Implementation
     public class EmployeeService : IEmployeeService
     {
         private readonly ApplicationDbContext _context;
+        private readonly IPaymentService _paymentService;
 
-        public EmployeeService(ApplicationDbContext context)
+        public EmployeeService(ApplicationDbContext context, IPaymentService paymentService)
         {
             _context = context;
+            _paymentService = paymentService;
         }
 
         public async Task CreateAsync(Employee enwEmployee)
@@ -44,8 +47,13 @@ namespace PayrollSystem.Services.Implementation
             await _context.SaveChangesAsync();
         }
 
-        public decimal Loan(int id, decimal totalAmount)
+        public decimal LoanPayment(int id, decimal totalAmount)
         {
+            /*var employee = GetById(id);
+            if (employee.Loan == Loan.Yes && totalAmount >= _paymentService.NetPay(decimal totalEarnings, decimal totalDeuction))
+            {
+
+            }*/
             throw new NotImplementedException();
         }
     }
