@@ -9,31 +9,52 @@ namespace PayrollSystem.Models.PaymentRecardViewModel
     {
         public int Id { get; set; }
 
+        [Display(Name = "Full Name")]
         public Employee? Employee { get; set; }
         public int EmployeeId { get; set; }
 
-        [Display(Name = "Name")]
         public string? FullName { get; set; }
 
-        [Display(Name = "Month")]
-        public string? PayMonth { get; set; }
+        [Display(Name = "Pay Month")]
+        public string PayMonth { get; set; } = DateTime.Today.Month.ToString();
 
-        [Display(Name = "Pay Date")]
-        public DateTime PayDate { get; set; }
+        [DataType(DataType.Date), Display(Name = "Pay Date")]
+        public DateTime PayDate { get; set; } = DateTime.Now;
 
-        //[Display(Name = "Pay Date")]
-        //public PayrollSchedule PayrollSchedule { get; set; }
-
+        [Display(Name = "Tax YearId")]
+        public TaxYear? TaxYear { get; set; }
         public int TaxYearId { get; set; }
-        public string? Year { get; set; }
 
-        [Display(Name = "Total Earnings")]
+        //public string? TaxCode { get; set; }
+        [Display(Name = "Hourly Rate")]
+        public decimal HourlyRate { get; set; }
+
+        [Display(Name = "Hours Worked")]
+        public decimal HoursWorked { get; set; }
+
+        [Display(Name = "Contractual Hours")]
+        public decimal ContractualHours { get; set; }
+
+        //[Display(Name = "Overtime Hours")]
+        public decimal OvertimeHours { get; set; }
+        public decimal HolidayHours { get; set; }
+        public decimal ContractualEarnings { get; set; }
+        public decimal HolidayEarning { get; set; }
+        public decimal OvertimeEarnings { get; set; }
+        // National Insurance Scheme 
+        public decimal NISTax { get; set; }
+        public decimal NHTTax { get; set; }
+        public decimal EDUTax { get; set; }
+        public decimal IncomTax { get; set; }
+        public decimal? Loan { get; set; }
         public decimal TotalEarnings { get; set; }
-
-        [Display(Name = "Total Deduction")]
         public decimal TotalDeduction { get; set; }
-
-        [Display(Name = "Net Pay")]
         public decimal NetSalary { get; set; }
+        public decimal AnnualGrossSalary { get; set; }
+        public decimal AnnualIncomTax { get; set; }
+        public decimal AnnualNISTax { get; set; }
+        public decimal AnnualEDUTax { get; set; }
+        public decimal AnnualNHTTas { get; set; }
+        public decimal AnnualNetSalary { get; set; }
     }
 }

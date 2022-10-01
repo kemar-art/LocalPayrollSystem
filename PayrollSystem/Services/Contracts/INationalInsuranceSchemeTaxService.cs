@@ -1,6 +1,6 @@
 ﻿namespace PayrollSystem.Services.Contracts
 {
-    public interface INationalInsuranceSchemeService
+    public interface INationalInsuranceSchemeTaxService
     {
         decimal NISTaxContibution(decimal totalAmount);
     }

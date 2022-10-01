@@ -2,7 +2,7 @@
 
 namespace PayrollSystem.Services.Implementation
 {
-    public class NationalHousingtrustService : INationalHousingtrustService
+    public class NationalHousingtrustService : INationalHousingtrustTaxService
     {
         private decimal nhtRate;
         private decimal nht;

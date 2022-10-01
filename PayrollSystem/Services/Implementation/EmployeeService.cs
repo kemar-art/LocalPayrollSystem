@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PayrollSystem.Data;
 using PayrollSystem.Data.Enums;
 using PayrollSystem.Services.Contracts;
@@ -55,6 +56,15 @@ namespace PayrollSystem.Services.Implementation
 
             }*/
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<SelectListItem> GetAllEmployeesForPayroll()
+        {
+            return GetAll().Select(emp => new SelectListItem()
+            {
+                Text = emp.FullName,
+                Value = emp.Id.ToString()
+            });
         }
     }
 }

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PayrollSystem.AutoMapperConfig;
 using PayrollSystem.Data;
+using PayrollSystem.Services;
 using PayrollSystem.Services.Contracts;
 using PayrollSystem.Services.Implementation;
 
@@ -18,6 +19,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IEducationTaxService, EducationTaxService>();
+builder.Services.AddScoped<INationalHousingtrustTaxService, NationalHousingtrustService>();
+builder.Services.AddScoped<INationalInsuranceSchemeTaxService, NationalInsuranceSchemeService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<IIncomTaxService, IncomeTaxService>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 

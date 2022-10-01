@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using PayrollSystem.Data.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PayrollSystem.Data
@@ -7,12 +9,17 @@ namespace PayrollSystem.Data
     {
         public int Id { get; set; }
 
-        [ForeignKey("EmployeeId")]
+        [ForeignKey("Employee")]
         public Employee? Employee { get; set; }
         public int EmployeeId { get; set; }
 
         public string? FullName { get; set; }
         public string? PayMonth { get; set; }
+        public string? NISNum { get; set; }
+        public string? TRNNum { get; set; }
+
+        [Display(Name = "Payroll Schedule")]
+        public string? PayrollSchedule { get; set; }
         public DateTime PayDate { get; set; }
 
         [ForeignKey("TaxYearId")]

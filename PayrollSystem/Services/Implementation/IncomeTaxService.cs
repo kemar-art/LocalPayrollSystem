@@ -2,12 +2,12 @@
 
 namespace PayrollSystem.Services.Implementation
 {
-    public class TaxService : ITaxService
+    public class IncomeTaxService : IIncomTaxService
     {
         private decimal itax;
         private decimal itaxRate;
 
-        public decimal TaxAmount(decimal totalAmount)
+        public decimal IncomeTaxContibution(decimal totalAmount)
         {
             if (totalAmount <= 1500096)
             {

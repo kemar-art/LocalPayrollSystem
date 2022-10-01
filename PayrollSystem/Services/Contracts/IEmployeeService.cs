@@ -1,4 +1,5 @@
-﻿using PayrollSystem.Data;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using PayrollSystem.Data;
 using PayrollSystem.Models.EmployeeViewModel;
 
 namespace PayrollSystem.Services.Contracts
@@ -12,5 +13,6 @@ namespace PayrollSystem.Services.Contracts
         Task DeleteAsync(int employeeId);
         decimal LoanPayment(int id, decimal totalAmount);
         IEnumerable<Employee> GetAll();
+        IEnumerable<SelectListItem> GetAllEmployeesForPayroll();
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PayrollSystem.Services
 {
-    internal class EducationTaxService : IEducationTaxService, INationalInsuranceSchemeService
+    internal class EducationTaxService : IEducationTaxService, INationalInsuranceSchemeTaxService
     {
         private decimal nisRate;
         private decimal nis;

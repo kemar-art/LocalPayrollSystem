@@ -3,7 +3,7 @@ using PayrollSystem.Services.Contracts;
 
 namespace PayrollSystem.Services.Implementation
 {
-    public class NationalInsuranceSchemeService : INationalInsuranceSchemeService
+    public class NationalInsuranceSchemeService : INationalInsuranceSchemeTaxService
     {
         private decimal nisRate;
         private decimal nis;

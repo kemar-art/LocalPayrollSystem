@@ -1,6 +1,6 @@
 ﻿namespace PayrollSystem.Services.Contracts
 {
-    public interface INationalHousingtrustService
+    public interface INationalHousingtrustTaxService
     {
         decimal NHTTaxContribution(decimal totalAmount);
     }
