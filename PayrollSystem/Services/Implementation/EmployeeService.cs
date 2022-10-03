@@ -48,15 +48,15 @@ namespace PayrollSystem.Services.Implementation
             await _context.SaveChangesAsync();
         }
 
-        public decimal LoanPayment(int id, decimal totalAmount)
+        /*public decimal LoanPayment(int id, decimal totalAmount)
         {
             /*var employee = GetById(id);
             if (employee.Loan == Loan.Yes && totalAmount >= _paymentService.NetPay(decimal totalEarnings, decimal totalDeuction))
             {
 
-            }*/
+            }
             throw new NotImplementedException();
-        }
+        }*/
 
         public IEnumerable<SelectListItem> GetAllEmployeesForPayroll()
         {

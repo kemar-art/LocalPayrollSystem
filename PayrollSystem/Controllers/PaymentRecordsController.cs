@@ -8,7 +8,7 @@ using PayrollSystem.Services.Contracts;
 
 namespace PayrollSystem.Controllers
 {
-    public class PaymentRecordssController : Controller
+    public class PaymentRecordsController : Controller
     {
         private readonly IPaymentService _paymentService;
         private readonly IEmployeeService _employeeService;
@@ -27,7 +27,7 @@ namespace PayrollSystem.Controllers
         private decimal nhtTax;
         private decimal totalDeduction;
 
-        public PaymentRecordssController(IPaymentService paymentService, IEmployeeService employeeService, 
+        public PaymentRecordsController(IPaymentService paymentService, IEmployeeService employeeService, 
             IIncomTaxService taxService, IEducationTaxService eduTaxService,
             INationalInsuranceSchemeTaxService nisTaxService,
             INationalHousingtrustTaxService nhtTaxService)
@@ -54,7 +54,7 @@ namespace PayrollSystem.Controllers
                 TotalEarnings = pay.TotalEarnings,
                 TotalDeduction = pay.TotalDeduction,
                 NetSalary = pay.NetSalary,
-                Employee = pay.Employee
+                Employee = pay.Employee,
             });
 
             return View(payRecards);
@@ -63,7 +63,40 @@ namespace PayrollSystem.Controllers
         // GET: PaymentRecordssController/Details/5
         public IActionResult Details(int id)
         {
-            return View();
+            var paymentRecard = _paymentService.GetById(id);
+            if (paymentRecard == null)
+            {
+                return NotFound();
+            }
+
+            var model = new PaymentDeailVM()
+            {
+                Id = paymentRecard.Id,
+                EmployeeId = paymentRecard.EmployeeId,
+                FullName = paymentRecard.FullName,
+                NISNum = paymentRecard.NISNum,
+                TRNNum = paymentRecard.TRNNum,
+                TaxYearId = paymentRecard.TaxYearId,
+                Year = _paymentService.GetTaxYearById(paymentRecard.TaxYearId).YearOfTax,
+                HourlyRate = paymentRecard.HourlyRate,
+                HoursWorked = paymentRecard.HoursWorked,
+                ContractualHours = paymentRecard.ContractualHours,
+                ContractualEarnings = paymentRecard.ContractualEarnings,
+                OvertimeHours = paymentRecard.OvertimeHours,
+                OvertimeRate = _paymentService.OvertimeRate(paymentRecard.HourlyRate),
+                OvertimeEarnings = paymentRecard.OvertimeEarnings,
+                NISTax = paymentRecard.NISTax,
+                NHTTax = paymentRecard.NHTTax,
+                EDUTax = paymentRecard.EDUTax,
+                IncomTax = paymentRecard.IncomTax,
+                Loan = paymentRecard.Loan,
+                TotalEarnings = paymentRecard.TotalEarnings,
+                TotalDeduction = paymentRecard.TotalDeduction,
+                Employee = paymentRecard.Employee,
+                TaxYear = paymentRecard.TaxYear,
+                NetSalary = paymentRecard.NetSalary
+            };
+            return View(model);
         }
 
         // GET: PaymentRecordssController/Create
@@ -80,9 +113,39 @@ namespace PayrollSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PaymentCreateVM model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                try
+                var payrecard = new PaymentRecord()
+                {
+                    Id = model.Id,
+                    EmployeeId = model.EmployeeId,
+                    FullName = _employeeService.GetById(model.EmployeeId).FullName,
+                    NISNum = _employeeService.GetById(model.EmployeeId).NationalInsuranceScheme,
+                    TRNNum = _employeeService.GetById(model.EmployeeId).TaxRegistrationNumber,
+                    PayrollSchedule = _employeeService.GetById(model.EmployeeId).PayrollSchedule.ToString(),
+                    PayDate = model.PayDate,
+                    PayMonth = model.PayMonth,
+                    TaxYearId = model.TaxYearId,
+                    HourlyRate = model.HourlyRate,
+                    HoursWorked = model.HoursWorked,
+                    ContractualHours = model.ContractualHours,
+                    OvertimeHours = overtimeHours = _paymentService.OvertimeHours(model.HoursWorked, model.ContractualHours),
+                    ContractualEarnings = contractualEarnings = _paymentService.ContractualEarnings(model.ContractualHours, model.HoursWorked, model.HourlyRate),
+                    OvertimeEarnings = overtimeEarnings = _paymentService.OvertimeEarnings(_paymentService.OvertimeRate(model.HourlyRate), overtimeHours),
+                    TotalEarnings = totalEarnings = _paymentService.TotalEarnings(overtimeEarnings, contractualEarnings),
+                    NISTax = nisTax = _nisTaxService.NISTaxContibution(totalEarnings),
+                    NHTTax = nhtTax = _nhtTaxService.NHTTaxContribution(totalEarnings),
+                    EDUTax = eduTax = _eduTaxService.EDUTaxContibution(totalEarnings),
+                    IncomTax = incomTax = _taxService.IncomeTaxContibution(totalEarnings),
+                    //Loan = loan = _employeeService.LoanPayment(model.EmployeeId, totalEarnings),
+                    TotalDeduction = totalDeduction = _paymentService.TotalDeduction(nisTax, nhtTax, eduTax, incomTax/*loan*/ ),
+                    NetSalary = _paymentService.NetPay(totalEarnings, totalDeduction)
+                };
+
+                await _paymentService.CreateAsync(payrecard);
+                return RedirectToAction(nameof(Index));
+
+                /*try
                 {
                     var payrecard =  new PaymentRecord()
                     {
@@ -106,8 +169,8 @@ namespace PayrollSystem.Controllers
                         NHTTax = nhtTax = _nhtTaxService.NHTTaxContribution(totalEarnings),
                         EDUTax = eduTax =_eduTaxService.EDUTaxContibution(totalEarnings),
                         IncomTax = incomTax = _taxService.IncomeTaxContibution(totalEarnings),
-                        Loan = loan = _employeeService.LoanPayment(model.EmployeeId, totalEarnings),
-                        TotalDeduction = totalDeduction = _paymentService.TotalDeduction(nisTax, nhtTax, eduTax, incomTax, loan),
+                        //Loan = loan = _employeeService.LoanPayment(model.EmployeeId, totalEarnings),
+                        TotalDeduction = totalDeduction = _paymentService.TotalDeduction(nisTax, nhtTax, eduTax, incomTax/*loan),
                         NetSalary = _paymentService.NetPay(totalEarnings, totalDeduction)
                     };
 
@@ -116,8 +179,8 @@ namespace PayrollSystem.Controllers
                 }
                 catch
                 {
-                    return View();
-                }
+                    //return View();
+                }*/
             }
 
             ViewBag.employees = _employeeService.GetAllEmployeesForPayroll();
@@ -144,6 +207,45 @@ namespace PayrollSystem.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpGet]
+        public IActionResult Payslip(int id)
+        {
+            var paymentRecard = _paymentService.GetById(id);
+            if (paymentRecard == null)
+            {
+                return NotFound();
+            }
+
+            var model = new PaymentDeailVM()
+            {
+                Id = paymentRecard.Id,
+                EmployeeId = paymentRecard.EmployeeId,
+                FullName = paymentRecard.FullName,
+                NISNum = paymentRecard.NISNum,
+                TRNNum = paymentRecard.TRNNum,
+                TaxYearId = paymentRecard.TaxYearId,
+                Year = _paymentService.GetTaxYearById(paymentRecard.TaxYearId).YearOfTax,
+                HourlyRate = paymentRecard.HourlyRate,
+                HoursWorked = paymentRecard.HoursWorked,
+                ContractualHours = paymentRecard.ContractualHours,
+                ContractualEarnings = paymentRecard.ContractualEarnings,
+                OvertimeHours = paymentRecard.OvertimeHours,
+                OvertimeRate = _paymentService.OvertimeRate(paymentRecard.HourlyRate),
+                OvertimeEarnings = paymentRecard.OvertimeEarnings,
+                NISTax = paymentRecard.NISTax,
+                NHTTax = paymentRecard.NHTTax,
+                EDUTax = paymentRecard.EDUTax,
+                IncomTax = paymentRecard.IncomTax,
+                Loan = paymentRecard.Loan,
+                TotalEarnings = paymentRecard.TotalEarnings,
+                TotalDeduction = paymentRecard.TotalDeduction,
+                Employee = paymentRecard.Employee,
+                TaxYear = paymentRecard.TaxYear,
+                NetSalary = paymentRecard.NetSalary
+            };
+            return View(model);
         }
 
         // GET: PaymentRecordssController/Delete/5

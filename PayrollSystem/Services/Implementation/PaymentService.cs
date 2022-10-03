@@ -34,13 +34,15 @@ namespace PayrollSystem.Services.Implementation
            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<PaymentRecord> GetAll() => _context.PaymentRecords.OrderBy(p => p.EmployeeId);
-
+        public IEnumerable<PaymentRecord> GetAll()
+        {
+            return _context.PaymentRecords.OrderBy(p => p.EmployeeId);
+        }
 
         public IEnumerable<SelectListItem> GetAllTaxYear()
         {
             var allTaxYear = _context.TaxYears.Select(taxYears => new SelectListItem
-            { 
+            {
                 Text = taxYears.YearOfTax,
                 Value = taxYears.Id.ToString()
             });
@@ -87,9 +89,9 @@ namespace PayrollSystem.Services.Implementation
             return hourlyRate * 1.5m;
         }
 
-        public decimal TotalDeduction(decimal nisTax, decimal nhtTax, decimal eduTax, decimal incomTax, decimal loan)
+        public decimal TotalDeduction(decimal nisTax, decimal nhtTax, decimal eduTax, decimal incomTax /*decimal loan*/)
         {
-            return nisTax + nhtTax + eduTax + incomTax + loan;
+            return nisTax + nhtTax + eduTax + incomTax /*+ loan*/;
         }
 
         public decimal TotalEarnings(decimal overtimeEarnings, decimal contractualEarnings)

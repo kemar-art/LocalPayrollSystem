@@ -16,7 +16,7 @@ namespace PayrollSystem.Services.Contracts
         decimal OvertimeEarnings(decimal overtimeRate, decimal overtimeHours);
         decimal ContractualEarnings(decimal contractualHours, decimal hoursWorked, decimal hourlyRate);
         decimal TotalEarnings(decimal overtimeEarnings, decimal contractualEarnings);
-        decimal TotalDeduction(decimal nisTax, decimal nhtTax, decimal eduTax, decimal incomTax, decimal loan);
+        decimal TotalDeduction(decimal nisTax, decimal nhtTax, decimal eduTax, decimal incomTax /*decimal loan*/);
         decimal NetPay(decimal totalEarnings, decimal totalDeuction);
     }
 }
