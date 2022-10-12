@@ -19,9 +19,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<INationalInsuranceSchemeTaxService, NationalInsuranceSchemeService>();
 builder.Services.AddScoped<IEducationTaxService, EducationTaxService>();
 builder.Services.AddScoped<INationalHousingtrustTaxService, NationalHousingtrustService>();
-builder.Services.AddScoped<INationalInsuranceSchemeTaxService, NationalInsuranceSchemeService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IIncomTaxService, IncomeTaxService>();
 

@@ -23,7 +23,7 @@ namespace PayrollSystem.Controllers
         private decimal nisTax;
         private decimal eduTax;
         private decimal incomTax;
-        private decimal loan;
+        //private decimal loan;
         private decimal nhtTax;
         private decimal totalDeduction;
 

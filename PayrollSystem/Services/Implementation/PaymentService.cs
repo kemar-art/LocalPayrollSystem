@@ -7,12 +7,14 @@ namespace PayrollSystem.Services.Implementation
     public class PaymentService : IPaymentService
     {
         private readonly ApplicationDbContext _context;
+        private readonly INationalInsuranceSchemeTaxService _nisTaxService;
         private decimal cantractualEarnings;
         private decimal overtimeHours;
 
-        public PaymentService(ApplicationDbContext context)
+        public PaymentService(ApplicationDbContext context, INationalInsuranceSchemeTaxService nisTaxService)
         {
             _context = context;
+            _nisTaxService = nisTaxService;
         }
         public decimal ContractualEarnings(decimal contractualHours, decimal hoursWorked, decimal hourlyRate)
         {
