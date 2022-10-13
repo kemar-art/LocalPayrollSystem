@@ -5,6 +5,7 @@ using PayrollSystem.Data.Enums;
 using PayrollSystem.Models.PaymentRecardViewModel;
 using PayrollSystem.Services;
 using PayrollSystem.Services.Contracts;
+using RotativaCore;
 
 namespace PayrollSystem.Controllers
 {
@@ -61,7 +62,7 @@ namespace PayrollSystem.Controllers
         }
 
         // GET: PaymentRecordssController/Details/5
-        public IActionResult Details(int id)
+        public IActionResult Detail(int id)
         {
             var paymentRecard = _paymentService.GetById(id);
             if (paymentRecard == null)
@@ -69,7 +70,7 @@ namespace PayrollSystem.Controllers
                 return NotFound();
             }
 
-            var model = new PaymentDeailVM()
+            var model = new PaymentDetailVM()
             {
                 Id = paymentRecard.Id,
                 EmployeeId = paymentRecard.EmployeeId,
@@ -218,7 +219,7 @@ namespace PayrollSystem.Controllers
                 return NotFound();
             }
 
-            var model = new PaymentDeailVM()
+            var model = new PaymentDetailVM()
             {
                 Id = paymentRecard.Id,
                 EmployeeId = paymentRecard.EmployeeId,
@@ -246,6 +247,15 @@ namespace PayrollSystem.Controllers
                 NetSalary = paymentRecard.NetSalary
             };
             return View(model);
+        }
+
+        public IActionResult PayslipPDF(int id)
+        {
+            var payslip = new ActionAsPdf("Payslip", new { id = id })
+            {
+                FileName = "payslip.pdf"
+            };
+            return payslip;
         }
 
         // GET: PaymentRecordssController/Delete/5
