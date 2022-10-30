@@ -2,7 +2,7 @@
 {
     public enum PaymentMethod
     {
-        Bank,
+        Transfer,
         Cash,
         cheque
     }

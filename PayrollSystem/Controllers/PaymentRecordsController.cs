@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PayrollSystem.Data;
 using PayrollSystem.Data.Enums;
@@ -15,6 +16,7 @@ namespace PayrollSystem.Controllers
         private readonly IEmployeeService _employeeService;
         private readonly IIncomTaxService _taxService;
         private readonly INationalHousingtrustTaxService _nhtTaxService;
+        private readonly IMapper _mapper;
         private readonly INationalInsuranceSchemeTaxService _nisTaxService;
         private readonly IEducationTaxService _eduTaxService;
         private decimal overtimeHours;
@@ -28,15 +30,16 @@ namespace PayrollSystem.Controllers
         private decimal nhtTax;
         private decimal totalDeduction;
 
-        public PaymentRecordsController(IPaymentService paymentService, IEmployeeService employeeService, 
+        public PaymentRecordsController(IPaymentService paymentService, IEmployeeService employeeService,
             IIncomTaxService taxService, IEducationTaxService eduTaxService,
             INationalInsuranceSchemeTaxService nisTaxService,
-            INationalHousingtrustTaxService nhtTaxService)
+            INationalHousingtrustTaxService nhtTaxService, IMapper mapper)
         {
             _paymentService = paymentService;
             _employeeService = employeeService;
             _taxService = taxService;
             _nhtTaxService = nhtTaxService;
+            _mapper = mapper;
             _nisTaxService = nisTaxService;
             _eduTaxService = eduTaxService;
         }
@@ -224,6 +227,7 @@ namespace PayrollSystem.Controllers
                 Id = paymentRecard.Id,
                 EmployeeId = paymentRecard.EmployeeId,
                 FullName = paymentRecard.FullName,
+                PayrollSystem = _employeeService.GetById(paymentRecard.EmployeeId).PayrollSchedule.ToString(),
                 NISNum = paymentRecard.NISNum,
                 TRNNum = paymentRecard.TRNNum,
                 TaxYearId = paymentRecard.TaxYearId,

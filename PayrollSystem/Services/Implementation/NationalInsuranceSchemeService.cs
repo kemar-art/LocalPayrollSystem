@@ -7,10 +7,6 @@ namespace PayrollSystem.Services.Implementation
     {
         private decimal nisRate;
         private decimal nis;
-        private decimal nisSum;
-        private decimal nisSum2;
-        private decimal nisSubTotal;
-        private decimal nisSubTotal2;
         public decimal NISTaxContibution(decimal totalAmount)
         {
             nisRate = 3m;

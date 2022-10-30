@@ -21,11 +21,17 @@ namespace PayrollSystem.Data
         public DateTime DOB { get; set; }
         public DateTime DateJoined { get; set; }
         public DateTime DateTerminated { get; set; }
-        public string? Designation { get; set; }
         public string? Email { get; set; }
         public string? TaxRegistrationNumber { get; set; }
         public string? NationalInsuranceScheme { get; set; }
+        // Newly added
+        public decimal RateAmount { get; set; }
+        // Newly added
+        public Department Department { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
+        // Newly added
+        public JobTitle JobTitle { get; set; }
+        public EmploymentType EmploymentType { get; set; }
         public PayrollSchedule PayrollSchedule { get; set; }
         public Loan Loan { get; set; }
         public IEnumerable<PaymentRecord>? PaymentRecords { get; set; }

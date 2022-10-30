@@ -1,5 +1,6 @@
 ﻿using PayrollSystem.Data;
 using PayrollSystem.Data.Enums;
+using PayrollSystem.Models.EmployeeViewModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

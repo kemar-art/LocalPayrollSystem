@@ -46,9 +46,6 @@ namespace PayrollSystem.Models.EmployeeViewModel
         [DataType(DataType.Date), Display(Name = ("Attrition Date"))]
         public DateTime DateTerminated { get; set; }
 
-        [Required(ErrorMessage = "Job role is required"), Display(Name = "Job Role")]
-        public string? Designation { get; set; }
-
         [Required(ErrorMessage = "Email address is required"), DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
 
@@ -67,5 +64,22 @@ namespace PayrollSystem.Models.EmployeeViewModel
         public PayrollSchedule PayrollSchedule { get; set; }
 
         public Loan Loan { get; set; }
+
+        [Required]
+        [Display(Name = ("Job Title"))]
+        public JobTitle JobTitle { get; set; }
+
+        [Required]
+        [Display(Name = ("Department"))]
+        public Department Department { get; set; }
+
+
+        [Required]
+        [Display(Name = ("Employment Type"))]
+        public EmploymentType EmploymentType { get; set; }
+
+        [Required]
+        [Display(Name = ("Amount"))]
+        public decimal RateAmount { get; set; }
     }
 }

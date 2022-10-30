@@ -12,6 +12,7 @@ using PayrollSystem.Models;
 using PayrollSystem.Models.EmployeeViewModel.EmployeeIndexVM;
 using PayrollSystem.Models.EmployeeViewModel;
 using PayrollSystem.Services.Contracts;
+using PayrollSystem.Data.Enums;
 using PayrollSystem.Services.Implementation;
 
 namespace PayrollSystem.Controllers
@@ -39,7 +40,7 @@ namespace PayrollSystem.Controllers
                 ImageUrl = employee.ImageUrl,
                 FullName = employee.FullName,
                 Gender = employee.Gender,
-                Designation = employee.Designation,
+                JobTitle = employee.JobTitle,
                 Address = employee.Address,
                 DateJoined = employee.DateJoined,
                 DateTerminated = employee.DateTerminated
@@ -68,11 +69,11 @@ namespace PayrollSystem.Controllers
                 NationalInsuranceScheme = employee.NationalInsuranceScheme,
                 TaxRegistrationNumber = employee.TaxRegistrationNumber,
                 PaymentMethod = employee.PaymentMethod,
-                PayrollSchedule = employee.PayrollSchedule,
+                PayrollSchedule = (PayrollSchedule)employee.PayrollSchedule,
                 Loan = employee.Loan,
                 Address = employee.Address,
                 Parish = employee.Parish,
-                Designation = employee.Designation,
+                JobTitle = employee.JobTitle,
                 DateTerminated = employee.DateTerminated,
                 ImageUrl = employee.ImageUrl
             };
@@ -113,9 +114,12 @@ namespace PayrollSystem.Controllers
                     PaymentMethod = model.PaymentMethod,
                     Loan = model.Loan,
                     PayrollSchedule = model.PayrollSchedule,
+                    EmploymentType = model.EmploymentType,
+                    JobTitle = model.JobTitle,
+                    RateAmount = model.RateAmount,
+                    Department = model.Department,
                     Address = model.Address,
                     Parish = model.Parish,
-                    Designation = model.Designation,
                 };
                 if (model.ImageUrl != null && model.ImageUrl.Length > 0)
                 {
@@ -159,10 +163,13 @@ namespace PayrollSystem.Controllers
                 TaxRegistrationNumber = employee.TaxRegistrationNumber,
                 PaymentMethod = employee.PaymentMethod,
                 Loan = employee.Loan,
-                PayrollSchedule = employee.PayrollSchedule,
+                PayrollSchedule = (PayrollSchedule)employee.PayrollSchedule,
+                EmploymentType = employee.EmploymentType,
+                JobTitle = employee.JobTitle,
+                RateAmount = (decimal)employee.RateAmount,
+                Department = employee.Department,
                 Address = employee.Address,
                 Parish = employee.Parish,
-                Designation = employee.Designation,
             };
             return View(model);
         }
@@ -195,10 +202,14 @@ namespace PayrollSystem.Controllers
                 employee.TaxRegistrationNumber = model.TaxRegistrationNumber;
                 employee.PaymentMethod = model.PaymentMethod;
                 employee.PayrollSchedule = model.PayrollSchedule;
+                employee.RateAmount = model.RateAmount;
+                employee.Department = model.Department;
+                employee.EmploymentType = model.EmploymentType;
+                employee.JobTitle = model.JobTitle;
                 employee.Loan = model.Loan;
                 employee.Address = model.Address;
                 employee.Parish = model.Parish;
-                employee.Designation = model.Designation;
+                employee.JobTitle = model.JobTitle;
                 if (model.ImageUrl != null && model.ImageUrl.Length > 0)
                 {
                     var uploadDir = @"images/employees";

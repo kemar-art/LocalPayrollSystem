@@ -1,5 +1,7 @@
 ﻿using PayrollSystem.Data.Enums;
 using PayrollSystem.Data;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace PayrollSystem.Models.EmployeeViewModel
 {
@@ -16,12 +18,15 @@ namespace PayrollSystem.Models.EmployeeViewModel
         public DateTime DOB { get; set; }
         public DateTime DateJoined { get; set; }
         public DateTime DateTerminated { get; set; }
-        public string? Designation { get; set; }
         public string? Email { get; set; }
         public string? TaxRegistrationNumber { get; set; }
         public string? NationalInsuranceScheme { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public PayrollSchedule PayrollSchedule { get; set; }
         public Loan Loan { get; set; }
+        public JobTitle JobTitle { get; set; }
+        public Department Department { get; set; }
+        public EmploymentType EmploymentType { get; set; }
+        public decimal RateAmount { get; set; }
     }
 }

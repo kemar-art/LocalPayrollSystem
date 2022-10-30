@@ -17,7 +17,7 @@ namespace PayrollSystem.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -244,14 +244,17 @@ namespace PayrollSystem.Data.Migrations
                     b.Property<DateTime>("DateTerminated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Designation")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Department")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmployeeNo")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmploymentType")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -264,6 +267,9 @@ namespace PayrollSystem.Data.Migrations
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JobTitle")
+                        .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -288,6 +294,9 @@ namespace PayrollSystem.Data.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("RateAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("TaxRegistrationNumber")
                         .HasColumnType("nvarchar(max)");

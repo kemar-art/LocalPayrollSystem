@@ -2,8 +2,8 @@
 {
     public enum PayrollSchedule
     {
-        monthly,
-        fortnightly,
-        weekly
+        Monthly,
+        Fortnightly,
+        Weekly
     }
 }

@@ -19,6 +19,8 @@ namespace PayrollSystem.Models.PaymentRecardViewModel
         [DataType(DataType.Date), Display(Name = "Pay Date")]
         public DateTime PayDate { get; set; }
 
+        public string? PayrollSystem { get; set; }
+
         public string? Year { get; set; }
 
         [Display(Name = "Tax YearId")]

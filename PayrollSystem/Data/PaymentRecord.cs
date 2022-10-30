@@ -23,10 +23,10 @@ namespace PayrollSystem.Data
 
         public string? TRNNum { get; set; }
 
-        //[Display(Name = "Payroll Schedule")]
+        [Display(Name = "Payroll Schedule")]
         public string? PayrollSchedule { get; set; }
 
-        public DateTime PayDate { get; set; }
+        public DateTime PayDate { get; set; } = DateTime.Now;
 
         [ForeignKey("TaxYear")]
         public int TaxYearId { get; set; }

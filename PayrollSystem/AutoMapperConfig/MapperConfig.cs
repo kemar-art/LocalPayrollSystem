@@ -2,6 +2,7 @@
 using PayrollSystem.Data;
 using PayrollSystem.Models.EmployeeViewModel.EmployeeIndexVM;
 using PayrollSystem.Models.EmployeeViewModel;
+using PayrollSystem.Models.PaymentRecardViewModel;
 
 namespace PayrollSystem.AutoMapperConfig
 {
@@ -10,7 +11,7 @@ namespace PayrollSystem.AutoMapperConfig
         public MapperConfig()
         {
             //CreateMap<Employee, EmployeeIndexVM>().ReverseMap();
-            //CreateMap<Employee, EmployeeCreateVM>().ReverseMap();
+            CreateMap<PaymentRecord, PaymentDetailVM>().ReverseMap();
         }
     }
 }
