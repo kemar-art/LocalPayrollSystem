@@ -27,8 +27,9 @@ namespace PayrollSystem.Services
             eduRate = 0.0225m;
             if ((totalAmount * 12) > 6000000)
             {
-                //Salary for January to March                   April to December 
-                edu = (((totalAmount * 3) - _nisTaxService.JanuaryToMarch()) * eduRate + 
+                                 //Salary for January to March                    
+                edu = (((totalAmount * 3) - _nisTaxService.JanuaryToMarch()) * eduRate +
+                             //April to December
                       ((totalAmount * 9) - _nisTaxService.AprilToDecember()) * eduRate) /12;
             }
             else if ((totalAmount * 12) <= 1500096.00m)

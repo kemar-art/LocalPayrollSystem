@@ -11,7 +11,7 @@ namespace PayrollSystem.Services.Implementation
             nhtRate = 0.02m;
             if ((totalAmount * 12) > 6000000)
             {
-                            //Salary for January to March                   April to December 
+                      //Salary for January to March        April to December 
                 nht = ((totalAmount * 3 * nhtRate) + (totalAmount * 9 * nhtRate)) / 12;
             }
             else if ((totalAmount * 12) <= 1500096.00m)
