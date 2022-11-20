@@ -13,6 +13,8 @@ namespace PayrollSystem.Services
         //private decimal nis;
         private decimal eduRate;
         private decimal edu;
+        private decimal edu2;
+        private decimal edu3;
         private readonly INationalInsuranceSchemeTaxService _nisTaxService;
 
         public EducationTaxService(INationalInsuranceSchemeTaxService nisTaxService)
@@ -23,7 +25,21 @@ namespace PayrollSystem.Services
         public decimal EDUTaxContibution(decimal totalAmount)
         {
             eduRate = 0.0225m;
-            edu = ((totalAmount - _nisTaxService.NISTaxContibution(totalAmount)) * eduRate);
+            if ((totalAmount * 12) > 6000000)
+            {
+                //Salary for January to March                   April to December 
+                edu = (((totalAmount * 3) - _nisTaxService.JanuaryToMarch()) * eduRate + 
+                      ((totalAmount * 9) - _nisTaxService.AprilToDecember()) * eduRate) /12;
+            }
+            else if ((totalAmount * 12) <= 1500096.00m)
+            {
+                edu = (totalAmount - _nisTaxService.NISTaxContibution(totalAmount)) * eduRate;
+            }
+            else if ((totalAmount * 12) > 1500096.00m && (totalAmount * 12) <= 6000000)
+            {
+                edu = (totalAmount - _nisTaxService.NISTaxContibution(totalAmount)) * eduRate;
+            }
+            
             return edu;
         }
     }
