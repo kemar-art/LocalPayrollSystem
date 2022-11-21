@@ -10,12 +10,16 @@ namespace PayrollSystem.Services.Implementation
         private decimal januaryToMarch;
         private decimal aprilToDecember;
 
+        //This fucntion is use to calculate education tax when you are make over six million dollas for the pay period April to December
+        //This fucntion is called in EducationTaxService class.
         public decimal AprilToDecember()
         {
             aprilToDecember = 2250000 * nisRate; ;
             return aprilToDecember;
         }
 
+        //This fucntion is use to calculate education tax when you are make over six million dollas for the pay period January to March
+        //This fucntion is called in EducationTaxService class.
         public decimal JanuaryToMarch()
         {
             januaryToMarch = 750000 * nisRate;

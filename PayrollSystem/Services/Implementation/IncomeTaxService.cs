@@ -46,7 +46,7 @@ namespace PayrollSystem.Services.Implementation
             {
                 //Tax free rate
                 itaxRate = .0m;
-                //itax = totalAmount * itaxRate;
+                //Calculation for income tax when your annual salary is equal or less than the threshold
                 itax = ((totalAmount * 12 / 12 * 9) + (totalAmount * 12 / 12 * 3)) * itaxRate;
             }
             else if ((totalAmount * 12) > 1500096.00m && (totalAmount * 12) <= 6000000)

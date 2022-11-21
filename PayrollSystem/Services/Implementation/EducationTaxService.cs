@@ -13,8 +13,6 @@ namespace PayrollSystem.Services
         //private decimal nis;
         private decimal eduRate;
         private decimal edu;
-        private decimal edu2;
-        private decimal edu3;
         private readonly INationalInsuranceSchemeTaxService _nisTaxService;
 
         public EducationTaxService(INationalInsuranceSchemeTaxService nisTaxService)
