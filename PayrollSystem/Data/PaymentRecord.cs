@@ -17,7 +17,7 @@ namespace PayrollSystem.Data
         [MaxLength(100)]
         public string? FullName { get; set; }
 
-        public string? PayMonth { get; set; }
+        public string?  PayMonth { get; set; }
 
         public string? NISNum { get; set; }
 
@@ -26,7 +26,7 @@ namespace PayrollSystem.Data
         [Display(Name = "Payroll Schedule")]
         public string? PayrollSchedule { get; set; }
 
-        public DateTime PayDate { get; set; } = DateTime.Now;
+        public DateTime PayDate { get; set; }
 
         [ForeignKey("TaxYear")]
         public int TaxYearId { get; set; }

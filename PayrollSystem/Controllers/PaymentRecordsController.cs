@@ -94,6 +94,8 @@ namespace PayrollSystem.Controllers
                 EDUTax = paymentRecard.EDUTax,
                 IncomTax = paymentRecard.IncomTax,
                 Loan = paymentRecard.Loan,
+                PayMonth = paymentRecard.PayMonth,
+                PayDate = paymentRecard.PayDate,
                 TotalEarnings = paymentRecard.TotalEarnings,
                 TotalDeduction = paymentRecard.TotalDeduction,
                 Employee = paymentRecard.Employee,
@@ -255,7 +257,7 @@ namespace PayrollSystem.Controllers
 
         public IActionResult PayslipPDF(int id)
         {
-            var payslip = new ActionAsPdf("Payslip", new { id = id })
+            var payslip = new ActionAsPdf("Payslip", new { id })
             {
                 FileName = "payslip.pdf"
             };

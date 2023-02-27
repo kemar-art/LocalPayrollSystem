@@ -8,148 +8,121 @@
     Layout = null;
 }
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></!--script>
-
-
-<!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"-->
-
-
+<div class="frame">
+<div class="row canvas">
+    <table border="1">
+        <tr height="100px" style="background-color:#363636;color:#ffffff;text-align:center;font-size:24px; font-weight:600;">
+            <td colspan='4'>Daliyaspirants.com Design Limited</td>
+        </tr>
+        <tr>
+            <th>Personel NO:</th>
+            <td>0123456</td>
+            <th>Name</th>
+            <td>Chandra</td>
+        </tr>
+        <!-----2 row--->
+        <tr>
+            <th>Bank</th>
+            <td>x0x0x0</td>
+            <th>Bank A/c No.</th>
+            <td>0x2x6x25x6</td>
+        </tr>
+        <!------3 row---->
+        <tr>
+            <th>DOB</th>
+            <td>23/02/xxxx</td>
+            <th>Lop Days</th>
+            <td>0</td>
+        </tr>
+        <!------4 row---->
+        <tr>
+            <th>PF No.</th>
+            <td>26123456</td>
+            <th>STD days</th>
+            <td>30</td>
+        </tr>
+        <!------5 row---->
+        <tr>
+            <th>Location</th>
+            <td>India</td>
+            <th>Working Days</th>
+            <td>30</td>
+        </tr>
+        <!------6 row---->
+        <tr>
+            <th>Department</th>
+            <td>IT</td>
+            <th>Designation</th>
+            <td>Designer</td>
+        </tr>
+    </table>
+</div>
+</div>
+<br />
 <div class="row">
-    <div class="col-md-12 grid-margin">
-        <div class="card">
-            <div class="card-body">
-                <div class="container-fluid d-flex justify-content-between">
-                    <div class="col-md-3 pl-0">
-                        <p class="mt-5 mb-2"><strong>Kemar's Enterprise LTD.</strong></p>
-                        <p>7 Heaven View ST, Building77</p>
-                    </div>
-                    <div class="col-md-3 pr-0">
-                        <p class="mt-5 mb-2 text-right"><strong>Pay Date:@Model.PayDate</strong></p>
-                        <p class="text-right"> </p>
-                    </div>
-                </div>
-                <br /><br /><br /><br />
-                <div class="col-md-12 row" style="width:auto;height:55px;border:1px solid #000;">
-                    <h4 class="text-center lh-1">PAYSLIP</h4>
-                    <p class="text-center">Pay Schedule: @Model.PayrollSystem</p>
-                </div><br />
-                <div  >
-                    <table>
-                        <tr>
-                            <th>Name:</th>
-                            <td>@Model.FullName</td>
-                        </tr>
-                        <tr>
-                            <th>Position</th>
-                            <td>@Model.Employee.JobTitle</td>
-                        </tr>
-                        <tr>
-                            <th>Department</th>
-                            <td>@Model.Employee.Department</td>
-                        </tr>
-                        <tr>
-                            <th>N.I.S Number:</th>
-                            <td>@Model.NISNum</td>
-                        </tr>
-                        <tr>
-                            <th>T.R.N Number:</th>
-                            <td>@Model.TRNNum</td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <th>Employee ID:</th>
-                            <td>@Model.EmployeeId</td>
-                        </tr>
-                        <tr>
-                            <th>Employee Type</th>
-                            <td>@Model.Employee.EmploymentType</td>
-                        </tr>
-                        <tr>
-                            <th>Pay Type</th>
-                            <td>@Model.Employee.PaymentMethod</td>
-                        </tr>
-                        <tr>
-                            <th>Pay Amount</th>
-                            <td>@Model.Employee.RateAmount</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 table-responsive-md">
-                    <table class="table table-striped">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Earnings</th>
-                                <th>Hours</th>
-                                <th>Rates</th>
-                                <th>Amount</th>
-                                <th>Deductions</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><b>Basic :</b></td>
-                                <td>@Model.ContractualHours.ToString("f")</td>
-                                <td>@Model.HourlyRate.ToString("f")</td>
-                                <td>@Model.ContractualEarnings.ToString("c")</td>
-                                <td>N.I.S Tax:</td>
-                                <td>@Model.NISTax.ToString("c")</td>
-                            </tr>
-                            <tr>
-                                <td><b>Overtime :</b></td>
-                                <td>@Model.OvertimeHours.ToString("f")</td>
-                                <td>@Model.OvertimeRate.ToString("f2")</td>
-                                <td>@Model.OvertimeEarnings.ToString("c")</td>
-                                <td>EDU Tax</td>
-                                <td>@Model.EDUTax.ToString("c")</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>N.H.T Tax</td>
-                                <td>@Model.NHTTax.ToString("c")</td>
-
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>Incom Tax</td>
-                                <td>@Model.IncomTax.ToString("c")</td>
-                            </tr>
-                            <tr>
-                                <td><b>Total</b></td>
-                                <td>@Model.HoursWorked</td>
-                                <td></td>
-                                <td>@Model.TotalEarnings.ToString("c")</td>
-                                <td>Total Deduction</td>
-                                <td>@Model.TotalDeduction.ToString("c")</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td class="table-dark"><b>Net Salary :</b></td>
-                                <td class="table-dark"">@Model.NetSalary.ToString("c")</td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div>
+        <table border="1">
+            <tr>
+                <th>Earnings</th>
+                <th>Amount</th>
+                <th>Deductions</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>Basic</td>
+                <td>29000</td>
+                <td>provident fund</td>
+                <td>1900</td>
+            </tr>
+            <tr>
+                <td>House Rent Allowance</td>
+                <td>2000</td>
+                <td>professional tax</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>special Allowance</td>
+                <td>400</td>
+                <td>Income tax</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>conveyance</td>
+                <td>3000</td>
+            </tr>
+            <tr>
+                <td>ADD Special allowance</td>
+                <td>2000</td>
+            </tr>
+            <tr>
+                <td>shift Allowance</td>
+                <td>1000</td>
+            </tr>
+            <tr>
+                <td>bonus</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>medical Allowance</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <th>Gross Earnings</th>
+                <td>Rs.38500</td>
+                <th>Gross Deductions</th>
+                <td>Rs.3000</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><strong>NET PAY</strong></td>
+                <td>Rs.35500</td>
+                <td></td>
+            </tr>
+        </table>
     </div>
 </div>
-@*<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>*@
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+

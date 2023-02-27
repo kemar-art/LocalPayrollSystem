@@ -33,7 +33,7 @@ namespace PayrollSystem.Controllers
         // GET: Employees
         public IActionResult Index()
         {
-            var employees = _employeeService.GetAll().Select(employee => new EmployeeIndexVM
+            List<EmployeeIndexVM> employees = _employeeService.GetAll().Select(employee => new EmployeeIndexVM
             {
                 Id = employee.Id,
                 EmployeeNo = employee.EmployeeNo,
@@ -96,7 +96,53 @@ namespace PayrollSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var employee = new Employee
+                try
+                {
+                    var employee = new Employee
+                    {
+                        Id = model.Id,
+                        EmployeeNo = model.EmployeeNo,
+                        FirstName = model.FirstName,
+                        MiddleName = model.MiddleName,
+                        LastName = model.LastName,
+                        FullName = model.FullName,
+                        Gender = model.Gender,
+                        Email = model.Email,
+                        DOB = model.DOB,
+                        PhoneNumber = model.PhoneNumber,
+                        DateJoined = model.DateJoined,
+                        NationalInsuranceScheme = model.NationalInsuranceScheme,
+                        TaxRegistrationNumber = model.TaxRegistrationNumber,
+                        PaymentMethod = model.PaymentMethod,
+                        Loan = model.Loan,
+                        PayrollSchedule = model.PayrollSchedule,
+                        EmploymentType = model.EmploymentType,
+                        JobTitle = model.JobTitle,
+                        RateAmount = model.RateAmount,
+                        Department = model.Department,
+                        Address = model.Address,
+                        Parish = model.Parish,
+                    };
+                    if (model.ImageUrl != null && model.ImageUrl.Length > 0)
+                    {
+                        var uploadDir = @"images/employees";
+                        var fileName = Path.GetFileNameWithoutExtension(model.ImageUrl.FileName);
+                        var extension = Path.GetExtension(model.ImageUrl.FileName);
+                        var webRootPath = _hostingEnvironment.WebRootPath;
+                        fileName = DateTime.UtcNow.ToString("yymmssfff") + fileName + extension;
+                        var path = Path.Combine(webRootPath, uploadDir, fileName);
+                        await model.ImageUrl.CopyToAsync(new FileStream(path, FileMode.Create));
+                        employee.ImageUrl = "/" + uploadDir + "/" + fileName;
+                    }
+                    await _employeeService.CreateAsync(employee);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception)
+                {
+
+                     string? message ="This did now work";
+                }
+                /*var employee = new Employee
                 {
                     Id = model.Id,
                     EmployeeNo = model.EmployeeNo,
@@ -133,7 +179,7 @@ namespace PayrollSystem.Controllers
                     employee.ImageUrl = "/" + uploadDir + "/" + fileName;
                 }
                 await _employeeService.CreateAsync(employee);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));*/
             }
             return View(model);
         }

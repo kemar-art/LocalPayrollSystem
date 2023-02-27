@@ -23,6 +23,7 @@ namespace PayrollSystem.Services
         public decimal EDUTaxContibution(decimal totalAmount)
         {
             eduRate = 0.0225m;
+
             if ((totalAmount * 12) > 6000000)
             {
                                  //Salary for January to March                    

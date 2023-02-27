@@ -16,6 +16,8 @@ namespace PayrollSystem.Models.PaymentRecardViewModel
         [Display(Name = "Pay Month")]
         public string? PayMonth { get; set; }
 
+        //public string? PayMonth { get => payMonth; set => payMonth = value; }
+
         [DataType(DataType.Date), Display(Name = "Pay Date")]
         public DateTime PayDate { get; set; }
 

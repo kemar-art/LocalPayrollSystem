@@ -17,7 +17,7 @@ namespace PayrollSystem.Models.PaymentRecardViewModel
         public string? FullName { get; set; }
 
         [Display(Name = "Pay Month")]
-        public string PayMonth { get; set; } = DateTime.Today.Month.ToString();
+        public string? PayMonth { get; set; } /*= DateTime.Today.Month.ToString();*/
 
         [DataType(DataType.Date), Display(Name = "Pay Date")]
         public DateTime PayDate { get; set; } = DateTime.Now;

@@ -24,7 +24,7 @@ namespace PayrollSystem.Services.Implementation
         }
 
         public Employee GetById(int employeeId) =>
-            _context.Employees.Where(e =>e.Id == employeeId).FirstOrDefault();
+            _context.Employees.Where(e => e.Id == employeeId).FirstOrDefault();
 
         public IEnumerable<Employee> GetAll() => _context.Employees;
 
