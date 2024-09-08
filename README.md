@@ -21,7 +21,7 @@ Installation
 
     bash
 
-git clone https://github.com/your-repository/mini-payroll-app.git
+git clone https://github.com/kemar-art/LocalPayrollSystem
 
 
 
