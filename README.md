@@ -23,64 +23,7 @@ Installation
 
 git clone https://github.com/your-repository/mini-payroll-app.git
 
-Mini Payroll Application
-Overview
 
-The Mini Payroll Application is a simple payroll management system built using .NET Core. It allows you to manage employees, track their work hours, calculate their pay, and generate payslips. This application is ideal for small businesses or individuals looking for a lightweight, efficient solution to manage payroll.
-Features
-
-    Employee Management: Add, edit, and delete employees from the system.
-    Work Hours Tracking: Enter the number of hours worked for each employee.
-    Payroll Calculation: Automatically calculate the pay based on hours worked and hourly rate.
-    Payslip Generation: Generate payslips for employees in a downloadable format.
-
-Requirements
-
-    .NET Core SDK 6.0 or higher
-    SQL Server or any other compatible database
-    Visual Studio or any preferred code editor
-
-Installation
-
-    Clone the repository:
-
-    bash
-
-git clone https://github.com/your-repository/mini-payroll-app.git
-
-Navigate to the project directory:
-
-bash
-
-cd mini-payroll-app
-
-Restore the required dependencies:
-
-bash
-
-dotnet restore
-
-Update the connection string:
-
-In appsettings.json, modify the connection string to connect to your database.
-
-json
-
-"ConnectionStrings": {
-  "DefaultConnection": "Server=your_server;Database=your_db;User Id=your_user;Password=your_password;"
-}
-
-Run the database migrations:
-
-bash
-
-dotnet ef database update
-
-Run the application:
-
-bash
-
-    dotnet run
 
 How to Use
 1. Add Employees
